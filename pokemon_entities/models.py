@@ -22,11 +22,11 @@ class PokemonEntity(models.Model):
     lon = models.FloatField(verbose_name='Долгота')
     appeared_at = models.DateTimeField(verbose_name='Время появления')
     disappeared_at = models.DateTimeField(verbose_name='Время исчезновения')
-    level = models.IntegerField(default=0, verbose_name='Уровень')
-    health = models.IntegerField(default=0, verbose_name='Здоровье')
-    Strength = models.IntegerField(default=0, verbose_name='Сила')
-    Defence = models.IntegerField(default=0, verbose_name='Защита')
-    Stamina = models.IntegerField(default=0, verbose_name='Выносливость')
+    level = models.IntegerField(blank=True, verbose_name='Уровень')
+    health = models.IntegerField(blank=True, verbose_name='Здоровье')
+    Strength = models.IntegerField(blank=True, verbose_name='Сила')
+    Defence = models.IntegerField(blank=True, verbose_name='Защита')
+    Stamina = models.IntegerField(blank=True, verbose_name='Выносливость')
 
     def __str__(self):
         return f'{self.pokemon.title} - {self.id}'

@@ -58,8 +58,8 @@ def show_pokemon(request, pokemon_id):
     pokemon_parameters = {
         'pokemon_id': pokemon.id,
         'title_ru': pokemon.title,
-        'title_en': '',
-        'title_jp': '',
+        'title_en': pokemon.title_en,
+        'title_jp': pokemon.title_jp,
         'description': pokemon.description,
         'img_url': pokemon.image.url,
     }

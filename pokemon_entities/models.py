@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Pokemon(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название покемона')
     title_en = models.CharField(max_length=200, blank=True, verbose_name='Английское название покемона')

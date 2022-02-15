@@ -8,8 +8,11 @@ class Pokemon(models.Model):
     image = models.ImageField(upload_to='', verbose_name='Изображение покемона')
     description = models.TextField(blank=True, verbose_name='Описание покемона')
     previous_evolution = models.ForeignKey(
-        'self', on_delete=models.SET_NULL,
-        null=True, blank=True, related_name='next_evolutions',
+        'self',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='next_evolutions',
         verbose_name="Из какого покемона эволюционировал"
     )
 
@@ -18,7 +21,11 @@ class Pokemon(models.Model):
 
 
 class PokemonEntity(models.Model):
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE, verbose_name='Покемон')
+    pokemon = models.ForeignKey(
+        Pokemon,
+        on_delete=models.CASCADE,
+        related_name='entities',
+        verbose_name='Покемон')
     lat = models.FloatField(verbose_name='Широта')
     lon = models.FloatField(verbose_name='Долгота')
     appeared_at = models.DateTimeField(verbose_name='Время появления')

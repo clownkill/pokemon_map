@@ -1,5 +1,7 @@
 import folium
 
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 from django.shortcuts import render
 
 from .models import Pokemon, PokemonEntity
@@ -55,7 +57,11 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    pokemon = Pokemon.objects.get(id=int(pokemon_id))
+    try:
+        pokemon = Pokemon.objects.get(id=int(pokemon_id))
+    except ObjectDoesNotExist:
+        raise Http404('Покемон не найден')
+
     pokemon_parameters = {
         'pokemon_id': pokemon.id,
         'title_ru': pokemon.title,
@@ -86,7 +92,7 @@ def show_pokemon(request, pokemon_id):
             },
         )
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
-    for pokemon_entity in PokemonEntity.objects.filter(pokemon=pokemon):
+    for pokemon_entity in pokemon.entities.all():
         add_pokemon(
             folium_map,
             pokemon_entity.lat,

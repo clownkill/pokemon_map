@@ -1,6 +1,5 @@
 import folium
 
-from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 from django.shortcuts import render
 
@@ -59,7 +58,7 @@ def show_all_pokemons(request):
 def show_pokemon(request, pokemon_id):
     try:
         pokemon = Pokemon.objects.get(id=pokemon_id)
-    except ObjectDoesNotExist:
+    except Pokemon.DoesNotExist:
         raise Http404('Покемон не найден')
     pokemon_parameters = {
         'pokemon_id': pokemon.id,

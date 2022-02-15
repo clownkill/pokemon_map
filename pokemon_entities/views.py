@@ -58,7 +58,7 @@ def show_all_pokemons(request):
 
 def show_pokemon(request, pokemon_id):
     try:
-        pokemon = Pokemon.objects.get(id=int(pokemon_id))
+        pokemon = Pokemon.objects.get(id=pokemon_id)
     except ObjectDoesNotExist:
         raise Http404('Покемон не найден')
     pokemon_parameters = {
